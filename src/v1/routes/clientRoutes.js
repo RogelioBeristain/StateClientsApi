@@ -1,15 +1,18 @@
 const express = require("express");
 const clientController = require("../../controllers/clientController");
 const router = express.Router();
+var multer = require('multer');
 
-router.get("/", clientController.getAllClients);
+const upload = multer({ dest: 'public/data/uploads' });
 
-router.get("/:clientId", clientController.getOneClient);
+router.post("/", upload.array('userphoto'), clientController.createNewClient);
 
-router.post("/", clientController.createNewClient);
+router.get("/info/:clientId", clientController.getInfoClient);
 
-router.patch("/:clientId", clientController.updateOneClient);
+router.patch("aprovate/:clientId", clientController.apovateClient);
 
-router.delete("/:clientId", clientController.deleteOneClient);
+router.patch("unaprovate/:clientId", clientController.unaprovateClient);
+
+router.get("/", clientController.getAllClients); 
 
 module.exports = router;

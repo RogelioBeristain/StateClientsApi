@@ -1,7 +1,7 @@
 const DB = require("./db.json");
 
 const getAllClients = () => {
-  return DB.Clients;
+  return DB.clients;
 };
 
 module.exports = { getAllClients };

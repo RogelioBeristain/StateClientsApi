@@ -1,34 +1,34 @@
 const clientService = require("../services/clientService");
-const getAllclients = (req, res) => {
-    const allclients = clientService.getAllclients();
-    //res.send("Get all clients");
-    res.send({ status: "OK", data: allclients });
-  };
-  
-  const getOneclient = (req, res) => {
-    const client = clientService.getOneclient();
-    res.send("Get an existing client");
-  };
-  
-  const createNewclient = (req, res) => {
-    const createdclient = clientService.createNewclient();
-    res.send("Create a new client");
-  };
-  
-  const updateOneclient = (req, res) => {
-    const updatedclient = clientService.updateOneclient();
-    res.send("Update an existing client");
-  };
-  
-  const deleteOneclient = (req, res) => {
-    clientService.deleteOneclient();
-    res.send("Delete an existing client");
-  };
-  
-  module.exports = {
-    getAllclients,
-    getOneclient,
-    createNewclient,
-    updateOneclient,
-    deleteOneclient,
-  };
+
+const createNewClient = (req, res) => {
+  const createdclient = clientService.createNewClient();
+  res.send("Create a new client");
+};
+
+const getInfoClient = (req, res) => {
+  const createdclient = clientService.getInfoClient();
+  res.send("Create a new client");
+};
+
+const apovateClient = (req, res) => {
+  const createdclient = clientService.apovateClient();
+  res.send("Create a new client");
+};
+
+const unaprovateClient = (req, res) => {
+  const createdclient = clientService.unaprovateClient();
+  res.send("Create a new client");
+};
+
+const getAllClients = (req, res) => {
+  const createdclient = clientService.getAllClients();
+  res.send("Create a new client");
+};
+
+module.exports = {
+  createNewClient,
+  getInfoClient,
+  apovateClient,
+  unaprovateClient,
+  getAllClients
+};
