@@ -1,0 +1,32 @@
+{
+  "name": "client_states_api",
+  "version": "1.0.0",
+  "description": "Api Rest registro de Clientes validar estatus ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "Clients-states-api"
+  },
+  "keywords": [
+    "NodeJS",
+    "ExpressJS",
+    "Files",
+    "MySql",
+    "sequelize",
+    "ORM"
+  ],
+  "author": "Rogelio Beristain",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
