@@ -4,9 +4,6 @@ const {isValidInputText} = require("../../middleware/validators.middleware");
 const router = express.Router();
 var multer = require('multer');
 
-
-
-
 const upload = multer({ dest: 'public/data/uploads' });
 
 router.post("/",
