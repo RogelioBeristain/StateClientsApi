@@ -3,105 +3,95 @@ const db = require("../models");
 const Client = db.clients;
 const ClientFile = db.clientFiles;
 const Op = db.Sequelize.Op;
-
-const createNewClientSv = (res, req) => {
+const states = {enviado: 1, aprovado: 2, rechazado: 3};
+const createNew = (res, req) => {
   const clientOriginal = req.body;
   //const {name,...clientMap} = clientOriginal; //uncommmeted if test unfilldata
   const clientMap = clientOriginal;
   saveInDataBaseClientBody(clientMap,res, req);
-  
-    
-   
 };
 
-const getInfoClientSv = (clientId, req, res) => {
+const getInfo = (clientId, req, res) => {
   Client.findByPk(clientId).then(client => {
-    if (client) {
-      res.send({
-        message: "Tutorial was updated successfully.",
-        data: client
-      });
-    } else {
-      res.send({
-        message: `y!`
-      });
-    }
+    res.send({
+      message: "Client was updated successfully.",
+      data: client
+    });
   })
   .catch(err => {
     res.status(500).send({
-      message: "Error updating Tutorial with "+clientId
+      message: `Error updating Client with ${clientId}`
     });
   });
  
 };
 
-const apovateClientSv = (clientId) => {
-  setStateClient(clientId,2);
+const apovate = (req, res) => {
+  setStateClient(req, res, states.aprovado);
 };
 
-const unaprovateClientSv = (clientId) => {
-  setStateClient(clientId,3);
+const unaprovate = (req, res) => {
+  setStateClient(req, res, states.rechazado);
 };
   
-const getAllClientsSv = () => {
-  const allClients = Client.getAllClients();
-  return allClients;
+const getAll = (res) => {
+  Client.findAll().then(data=>{
+    res.send({message: data, data: data});
+  }).catch(err => {
+    const message = err.message || "Some error."
+    res.send({message: message, data: clientMap});
+  });
+
 };
 
 /**
  * 
  * @param {*Client} clientMap is type Client 
  */
-
 const saveInDataBaseClientBody = (clientMap, res, req)=> {
-  Client.create( clientMap )
-    .then(data => {
-      const message = data;
+  Client.create( clientMap ).then(data => {
       saveFilesOfClientInDataBase(data.id, req.files, clientMap.filesNames)
-      res.send({message:message, data: clientMap});
-    })
-    .catch(err => {
-      const message = err.message || "Some error occurred while creating the Client."
-      
+      res.send({message: data, data: clientMap});
+    }).catch(err => {
+      const message = err.message || "Some error"
       res.send({message:message, data: clientMap});
     });
 }
 
-
 const saveFilesOfClientInDataBase= (clientId, files, filesNames)=> {
-    console.log(files);
     const names = filesNames.split(',');
-    files.map(
-      (file, index)=>{
-        const fileMap = {
-          fileName: names[index],
-          fileUrl: file.path,
-          clientId: clientId
-        };
-        setStateClient(clientId,1);
-        ClientFile.create( fileMap )
-          .then(data => {
-            const message = data;
-          })
-          .catch(err => {
-            const message = err.message || "Some error occurred while creating the Client."
-          });
-      }
-    );
+    files.map((file, index)=>{
+      const fileMap = {
+        fileName: names[index],
+        fileUrl: file.path,
+        clientId: clientId
+      };
+
+      ClientFile.create( fileMap ).then(data => {
+          res.send({message: data, data: clientMap});
+        }).catch(err => {
+          const message = err.message || "Some error occurred";
+          res.send({message: message, data: clientMap});
+      });
+    });
 }
 
+const setStateClient = async (req, res, idStatus)=> {
+  const clientId = req.body.clientId;
+  if(clientId){
+    const client = await Client.findByPk(clientId);
+    client.set({ clientStateId: idStatus });
+    await client.save();
+  }
 
-const setStateClient= async (clientId, idStatus)=> {
-  const client = await  Client.findByPk(clientId);
-  
-  client.set({ clientStateId: idStatus });
-  await client.save();
+  res.send({message:`ok ${clientId}`, data: req.body.clientId});
 }
+
 
 module.exports = {
-  createNewClientSv,
-  getInfoClientSv,
-  apovateClientSv,
-  unaprovateClientSv,
-  getAllClientsSv,
+  createNew,
+  getInfo,
+  apovate,
+  unaprovate,
+  getAll,
 };

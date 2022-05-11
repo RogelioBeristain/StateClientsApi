@@ -23,9 +23,9 @@ router.post("/",
 
 router.get("/info/:clientId", getInfoClient);
 
-router.patch("aprovate/:clientId", apovateClient);
+router.patch("/aprovate", apovateClient);
 
-router.patch("unaprovate/:clientId", unaprovateClient);
+router.patch("/unaprovate", unaprovateClient);
 
 router.get("/", getAllClients); 
 
