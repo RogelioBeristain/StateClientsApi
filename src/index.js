@@ -1,7 +1,6 @@
 // Imports
 const express = require("express");
 var cors = require('cors')
-
 //
 const v1ClientRouter = require("./v1/routes/clientRoutes");
 const db = require("./models");
@@ -22,7 +21,6 @@ var corsOptions = { // use if is requiered in the project
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 db.sequelize.sync();
 
 

@@ -1,34 +1,35 @@
-const clientService = require("../services/clientService");
+const {createNewClientSv, getInfoClientSv, apovateClientSv, unaprovateClientSv, getAllClientsSv} = require("../services/clientService");
 const { validationResult } = require('express-validator');
 
-const createNewClient = (req, res) => {
-  const createdclient = clientService.createNewClient();
+const createNewClient = async (req, res) => {
+  
 
   const errors = validationResult(req);
     
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    res.send({message:"createNewClient", data:req.body });
+    const createdclient =  createNewClientSv(res,req);
+
 };
 
 const getInfoClient = (req, res) => {
-  const createdclient = clientService.getInfoClient();
-  res.send({message:"getInfoClient"});
+  const createdclient = getInfoClientSv(req.params.clientId, req, res);
+  //res.send({message:"getInfoClient"});
 };
 
 const apovateClient = (req, res) => {
-  const createdclient = clientService.apovateClient();
+  const createdclient = apovateClientSv();
   res.send({message:"apovateClient"});
 };
 
 const unaprovateClient = (req, res) => {
-  const createdclient = clientService.unaprovateClient();
+  const createdclient = unaprovateClientSv();
   res.send({message:"unaprovateClient"});
 };
 
 const getAllClients = (req, res) => {
-  const createdclient = clientService.getAllClients();
+  const createdclient = getAllClientsSv();
   res.send({message:"getAllClients"});
 };
 

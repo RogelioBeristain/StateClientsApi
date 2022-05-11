@@ -19,7 +19,7 @@ router.post("/",
     isValidInputText('phoneNumber',{ min: 10, max: 10 }),
     isValidInputText('rfc', { min: 9 }),
     //EndMiddleswares
-    createNewClient);
+     createNewClient);
 
 router.get("/info/:clientId", getInfoClient);
 

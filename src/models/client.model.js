@@ -18,25 +18,31 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
             allowNull: false,
             type: DataTypes.STRING, 
         },
-        street:{
+        zipCodeAddress:{
             allowNull: false,
             type: DataTypes.STRING, 
         },
 
-        colony:{
+        streetAddress:{
             allowNull: false,
             type: DataTypes.STRING, 
         },
-        zipCode:{
+        colonyAddress:{
             allowNull: false,
             type: DataTypes.STRING, 
         },
-        phone:{
+        phoneNumber:{
             allowNull: false,
             type: DataTypes.STRING, 
         },
+
+        rfc:{
+            allowNull: false,
+            type: DataTypes.STRING, 
+        },
+        
         clientStateId:{
-            allowNull: false,
+            allowNull: true,
             type: DataTypes.INTEGER,
         }
     });
