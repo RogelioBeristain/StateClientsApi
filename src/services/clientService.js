@@ -4,6 +4,7 @@ const Client = db.clients;
 const ClientFile = db.clientFiles;
 const Op = db.Sequelize.Op;
 const states = {enviado: 1, aprovado: 2, rechazado: 3};
+
 const createNew = (res, req) => {
   const clientOriginal = req.body;
   //const {name,...clientMap} = clientOriginal; //uncommmeted if test unfilldata
@@ -17,13 +18,11 @@ const getInfo = (clientId, req, res) => {
       message: "Client successfully.",
       data: client
     });
-  })
-  .catch(err => {
+  }).catch(err => {
     res.status(500).send({
-      message: `Error  Client with ${clientId}`
+      message: `Error  ${clientId}`
     });
   });
- 
 };
 
 const apovate = (req, res) => {
@@ -35,8 +34,8 @@ const unaprovate = (req, res) => {
 };
   
 const getAll = (res) => {
-  Client.findAll().then(data=>{
-    const clientfilter = data.map(client=>{
+  Client.findAll().then(data=> {
+    const clientfilter = data.map(client=> {
       return {
         id: client.id,
         name: client.name,
@@ -50,11 +49,9 @@ const getAll = (res) => {
     const message = err.message || "Some error."
     res.send({message: message, data: clientMap});
   });
-
 };
 
 /**
- * 
  * @param {*Client} clientMap is type Client 
  */
 const saveInDataBaseClientBody = (clientMap, res, req)=> {
@@ -67,6 +64,11 @@ const saveInDataBaseClientBody = (clientMap, res, req)=> {
     });
 }
 
+/**
+ * @param {*Int} clientId 
+ * @param {*FilesObject} files 
+ * @param {*String} filesNames 
+ */
 const saveFilesOfClientInDataBase= (clientId, files, filesNames)=> {
     const names = filesNames.split(',');
     files.map((file, index)=>{
@@ -75,7 +77,6 @@ const saveFilesOfClientInDataBase= (clientId, files, filesNames)=> {
         fileUrl: file.path,
         clientId: clientId
       };
-
       ClientFile.create( fileMap ).then(data => {
           res.send({message: data, data: clientMap});
         }).catch(err => {
@@ -87,16 +88,13 @@ const saveFilesOfClientInDataBase= (clientId, files, filesNames)=> {
 
 const setStateClient = async (req, res, idStatus)=> {
   const clientId = req.body.clientId;
-  console.log(req.body);
   if(clientId){
     const client = await Client.findByPk(clientId);
     client.set({ clientStateId: idStatus });
     await client.save();
   }
-
   res.send({message:`ok ${clientId}`, data: req.body.clientId});
 }
-
 
 module.exports = {
   createNew,

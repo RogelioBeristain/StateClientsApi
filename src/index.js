@@ -9,9 +9,6 @@ const app = express();
 
 // Propierties
 const PORT = process.env.PORT || 3000;
-
-
-
 var corsOptions = { // use if is requiered in the project
   origin: "http://localhost:8081" // host allow origin specific
 };
@@ -23,9 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 db.sequelize.sync();
 
-
 app.use("/api/v1/clients", v1ClientRouter);
-
 
 app.listen(PORT, () => {
   console.log(`API is listening on port ${PORT}`);

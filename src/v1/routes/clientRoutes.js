@@ -20,13 +20,13 @@ router.post("/",
     isValidInputText('rfc', { min: 9 }),
     //EndMiddleswares
      createNewClient);
-
-router.get("/info/:clientId", getInfoClient);
-
-router.patch("/aprovate", apovateClient);
-
-router.patch("/unaprovate", unaprovateClient);
-
-router.get("/", getAllClients); 
+     
+     router.patch("/unaprovate", unaprovateClient);
+     
+     router.patch("/aprovate", apovateClient);
+     
+     router.get("/info/:clientId", getInfoClient);
+     
+     router.get("/", getAllClients); 
 
 module.exports = router;
