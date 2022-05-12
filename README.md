@@ -6,7 +6,7 @@ Client States is a simple API REST, written in JavaScript,
 where you can register a client and update their status in the system. the API supports file uploads. The data is intended to be stored in a mySql database. 
 
 For more information see:
-[**Client Sates Wiki**](https://github.com/)
+[**Client Sates Wiki**](https://github.com/RogelioBeristain/stateClientsApi/wiki)
 
 FRONT VERSIONS:
 [**ANGULAR**](https://github.com/RogelioBeristain/ClientSatesAngular)
