@@ -8,6 +8,12 @@ where you can register a client and update their status in the system. the API s
 For more information see:
 [**Client Sates Wiki**](https://github.com/)
 
+FRONT VERSIONS:
+[**ANGULAR**](https://github.com/RogelioBeristain/ClientSatesAngular)
+
+FRONT VERSIONS:
+[**ANDROID KOTLIN**](#)
+
 ## Legal information and credits
 
 It's licensed under the MIT license.
@@ -36,7 +42,20 @@ NodeJs , Mysql
 
 You only need five lines of code, to generate and view your first the migrations for db and seeders.
 
-```csharp
-
+#### POSTMAN LINK
+```
+ https://www.getpostman.com/collections/cdbb8143f3fffe29dcf9
+```
+### ENPOINTS
+```
+  POST
+  http://localhost:3000/api/v1/clients
+  PATCH
+  http://localhost:3000/api/v1/clients/aprovate  
+  http://localhost:3000/api/v1/clients/unaprovate 
+  GET
+  http://localhost:3000/api/v1/clients/info/{id} 
+  http://localhost:3000/api/v1/clients
+  
 ```
 
