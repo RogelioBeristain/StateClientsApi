@@ -8,6 +8,12 @@ where you can register a client and update their status in the system. the API s
 For more information see:
 [**Client Sates Wiki**](https://github.com/)
 
+FRONT VERSIONS:
+[**ANGULAR**](https://github.com/RogelioBeristain/ClientSatesAngular)
+
+FRONT VERSIONS:
+[**ANDROID KOTLIN**](#)
+
 ## Legal information and credits
 
 It's licensed under the MIT license.
