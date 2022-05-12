@@ -46,7 +46,7 @@ You only need five lines of code, to generate and view your first the migrations
 ```
  https://www.getpostman.com/collections/cdbb8143f3fffe29dcf9
 ```
-### ENPOINTS
+### ENDPOINTS
 ```
   POST
   http://localhost:3000/api/v1/clients
