@@ -12,7 +12,7 @@ FRONT VERSIONS:
 [**ANGULAR**](https://github.com/RogelioBeristain/ClientSatesAngular)
 
 FRONT VERSIONS:
-[**ANDROID KOTLIN**](#)
+[**~~ANDROID KOTLIN~~**](#)
 
 ## Legal information and credits
 
