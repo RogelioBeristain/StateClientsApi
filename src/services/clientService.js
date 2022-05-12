@@ -14,13 +14,13 @@ const createNew = (res, req) => {
 const getInfo = (clientId, req, res) => {
   Client.findByPk(clientId).then(client => {
     res.send({
-      message: "Client was updated successfully.",
+      message: "Client successfully.",
       data: client
     });
   })
   .catch(err => {
     res.status(500).send({
-      message: `Error updating Client with ${clientId}`
+      message: `Error  Client with ${clientId}`
     });
   });
  
@@ -36,7 +36,16 @@ const unaprovate = (req, res) => {
   
 const getAll = (res) => {
   Client.findAll().then(data=>{
-    res.send({message: data, data: data});
+    const clientfilter = data.map(client=>{
+      return {
+        id: client.id,
+        name: client.name,
+        firstSurname: client.firstSurname,
+        secondSurname: client.secondSurname,
+        status: client.clientStateId
+      }
+    })
+    res.send({message: data, data: clientfilter});
   }).catch(err => {
     const message = err.message || "Some error."
     res.send({message: message, data: clientMap});
@@ -78,6 +87,7 @@ const saveFilesOfClientInDataBase= (clientId, files, filesNames)=> {
 
 const setStateClient = async (req, res, idStatus)=> {
   const clientId = req.body.clientId;
+  console.log(req.body);
   if(clientId){
     const client = await Client.findByPk(clientId);
     client.set({ clientStateId: idStatus });
